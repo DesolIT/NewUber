@@ -1,18 +1,23 @@
-import React, {useEffect, useState} from 'react'
-import { useRouter } from 'next/router';
-import Form from '../../../components/form';
+import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import Form from "../../../components/form";
+import { useRouter } from "next/router";
 
-const EditMotorista = () => {
+const Edit = (props) => {
+  const router = useRouter();
+  const [id, setId] = useState(null);
 
-const router = useRouter();
-const {query:{id}} = router;
+  useEffect(() => {
+    setId(router.query.id);
+  }, [router.query]);
 
-return (
-    <>
-    <Form />
-    <p>Su numero de identidad es {id}</p>
-    </>
-    
-)}
- 
-export default EditMotorista
+  return (
+    <div>
+      <Form id={id} />
+    </div>
+  );
+};
+
+Edit.propTypes = {};
+
+export default Edit;
