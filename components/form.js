@@ -23,9 +23,8 @@ const Form=()=>{
 
     const enviarDatos = (e)=>{
         
-        let datos = JSON.parse(localStorage.getItem("arregloStorage")) || [];
-        // setArreglo(datos);
-        
+        let datos = JSON.parse(localStorage.getItem("arregloStorage")) || []
+                
         datos.push(formValue)
         
         localStorage.setItem('arregloStorage', JSON.stringify(datos));

@@ -1,5 +1,5 @@
 import React from "react";
-import CardMotorista from "../../../components/form";
+import CardMotorista from "../../../components/cardMotorista";
 
 const Listar = () => {
   return <CardMotorista />;
