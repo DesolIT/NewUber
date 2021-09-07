@@ -1,10 +1,10 @@
 import React from "react";
-import cardMotorista from "../../../components/form";
+import CardMotorista from "../../../components/cardMotorista";
 
 const Listar = ()=>{
     return(
 
-        <cardMotorista />
+        <CardMotorista />
     )
 }
 export default Listar
