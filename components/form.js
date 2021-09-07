@@ -10,8 +10,7 @@ const Form=()=>{
         telefono:'',
         identidad:''
     })
-    // const [arreglo, setArreglo] = useState([]);
-
+    
     const handleChange = (e)=>{
         const {name, value} = e.target;
         setFormValue((prevState) =>{
