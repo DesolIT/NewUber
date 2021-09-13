@@ -62,7 +62,7 @@ const Solicitud = ({id})=>{
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormValue((prevState) => {
+        setFormSol((prevState) => {
           return {
             ...prevState,
             [name]: value,
