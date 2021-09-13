@@ -2,6 +2,7 @@
 import router from "next/router";
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import Rating from "./rating";
 
 const CardContainer = styled.div`
   display: flex;
@@ -19,14 +20,15 @@ const CardMotorista = () => {
   const [listNames, setlistNames] = useState([]);
   useEffect(() => {
     if (typeof localStorage !== "undefined") {
-      let arrayStorage = JSON.parse(localStorage.getItem("arregloStorage"));
+      let arrayStorage = JSON.parse(localStorage.getItem("newArreglo2"));
       if (arrayStorage?.length > 0) setlistNames(arrayStorage);
     }
   }, []);
 
   return (
     <CardContainer>
-      {listNames.map((listMot) => {
+      {(listNames.length > 0) ?
+      listNames.map((listMot) => {
         return (
           <Card key={listMot.identidad}>
             <img src="/Sin título-1 copia.jpg" width="100" alt="pepe" />
@@ -38,7 +40,12 @@ const CardMotorista = () => {
               <span>DNI : {listMot.identidad}</span>
               <br></br>
               <span>Telefono : {listMot.telefono}</span>
+              <br></br>
+              {/* <span>Votaciones : {listMot.contVot}</span>
+              <br></br>
+              <span>Puntuacion : {listMot.votacion}</span> */}
             </div>
+            <Rating id={listMot.identidad}/> 
             <input
               type="button"
               value="Modificar"
@@ -46,9 +53,18 @@ const CardMotorista = () => {
                 router.push(`/motorista/edit/${listMot.identidad}`)
               }
             />
+            {/* <input
+              type="button"
+              value="Crear Solicitud"
+              onClick={() =>
+                router.push(`/motorista/solicitud/crear/${listMot.identidad}`)
+              }
+            /> */}
           </Card>
         );
-      })}
+      })
+      : <p>Debe agregar al menos un elemento a la lista </p>
+      }
     </CardContainer>
   );
 };

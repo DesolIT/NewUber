@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
+
 const Form = ({ id }) => {
   const router = useRouter();
   let sacarStorage;
@@ -9,12 +10,13 @@ const Form = ({ id }) => {
     edad: "",
     telefono: "",
     identidad: "",
+    valoraciones:[]
   });
 
   useEffect(() => {
     if (id)
       if (typeof localStorage !== "undefined") {
-        let arrayStorage = JSON.parse(localStorage.getItem("arregloStorage"));
+        let arrayStorage = JSON.parse(localStorage.getItem("newArreglo2"));
         setFormValue(arrayStorage.find((el) => el.identidad === id));
       }
   }, [id]);
@@ -31,7 +33,7 @@ const Form = ({ id }) => {
 
   const enviarDatos = (e) => {
     e.preventDefault();
-    let datos = JSON.parse(localStorage.getItem("arregloStorage")) || [];
+    let datos = JSON.parse(localStorage.getItem("newArreglo2")) || [];
     let result = [...datos];
 
     if (id) {
@@ -45,13 +47,12 @@ const Form = ({ id }) => {
       result.push(formValue);
     }
 
-    localStorage.setItem("arregloStorage", JSON.stringify(result));
-    sacarStorage = JSON.parse(localStorage.getItem("arregloStorage"));
-    console.log(sacarStorage);
+    localStorage.setItem("newArreglo2", JSON.stringify(result));
+    sacarStorage = JSON.parse(localStorage.getItem("newArreglo2"));
     router.push("/");
   };
 
-  const { nombre, edad, telefono, identidad } = formValue;
+  const { nombre, edad, telefono, identidad} = formValue;
   return (
     <div>
       <h2>Agregar Motorista</h2>

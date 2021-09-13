@@ -25,7 +25,8 @@ const Layout = ({ children }) => {
     <Grid columns={"1fr"} rows={"minmax(68px,auto) 1fr "}>
       <HeaderCell width={3}>
         <h1>Header</h1>
-        <button onClick={() => router.push("/motorista/create")}>+</button>
+        <button onClick={() => router.push("/motorista/create")}>Agregar Motorista</button>
+        <button onClick={() => router.push("/motorista/createSolic")}>Crear Solicitud</button>
       </HeaderCell>
 
       <Cell>{children}</Cell>
