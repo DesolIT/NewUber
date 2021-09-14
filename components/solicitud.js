@@ -64,15 +64,9 @@ const CustomButton = styled.button((props) => {
 });
 
 const Solicitud = ({ id }) => {
+  const {v4:uuidv4} = require ('uuid')
   const router = useRouter();
   let sacarStorage;
-  const [formValue, setFormValue] = useState({
-    nombre: "",
-    edad: "",
-    telefono: "",
-    identidad: "",
-    valoraciones: [],
-  });
 
   const [formSol, setFormSol] = useState({
     nombre: "",
@@ -80,7 +74,7 @@ const Solicitud = ({ id }) => {
     dirR: "",
     dirD: "",
     pesoPaq: "",
-    ident: "",
+    ident: ""
   });
 
   const [listNames, setlistNames] = useState([]);
@@ -94,31 +88,35 @@ const Solicitud = ({ id }) => {
   }, []);
 
   useEffect(() => {
-    if (typeof localStorage !== "undefined") {
-      let arreglo = JSON.parse(localStorage.getItem("arraySolicitudes"));
-      if (arreglo?.length > 0) setFormSol(arreglo);
-    }
-  }, []);
+    if (id)
+      if (typeof localStorage !== "undefined") {
+        let arreglo  = JSON.parse(localStorage.getItem("Solicitudes"));
+        setFormSol(arreglo.find((el) => el.ident === id));
+      }
+  }, [id]);
 
   const enviarDatos = (e) => {
     e.preventDefault();
-    let datos = JSON.parse(localStorage.getItem("arraySolicitudes")) || [];
+    let datos = JSON.parse(localStorage.getItem("Solicitudes")) || [];
     let result = [...datos];
 
     if (id) {
       result = datos.map((el) => {
-        if (el.identidad === id) {
+       if (el.ident === id) {
+         formSol.ident=uuidv4()
           return formSol;
         }
+        el.ident=uuidv4()
         return el;
       });
     } else {
+      formSol.ident=uuidv4()
       result.push(formSol);
     }
 
-    localStorage.setItem("arraySolicitudes", JSON.stringify(result));
-    sacarStorage = JSON.parse(localStorage.getItem("arraySolicitudes"));
-    router.push("/");
+    localStorage.setItem("Solicitudes", JSON.stringify(result));
+    sacarStorage = JSON.parse(localStorage.getItem("Solicitudes"));
+    router.push("/motorista/solicitud/listarSol/listarSol");
   };
 
   const handleChange = (e) => {
@@ -136,7 +134,7 @@ const Solicitud = ({ id }) => {
     });
   };
 
-  const { nombre, motorista, dirR, dirD, pesoPaq, ident } = formSol;
+  const { nombre, motorista, dirR, dirD, pesoPaq} = formSol;
   return (
     <>
       <h2>Registrar Solicitud</h2>

@@ -47,13 +47,10 @@ const RatingStars = ({ id }) => {
   };
   return (
     <div>
-      <Rating onClick={handleRating} ratingValue={ratingValue} />
-      {/* <p>{iterador} votaciones</p>
-                    <p>Puntuacion {counta > 0 
-                    ? counta/iterador
-                    : 0    
-                }</p> */}
+      <Rating onClick={handleRating} 
+      ratingValue={ratingValue} />
     </div>
   );
 };
 export default RatingStars;
+      
