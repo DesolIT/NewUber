@@ -127,6 +127,7 @@ const Form = ({ id }) => {
             placeholder="Nombre Completo"
             onChange={handleChange}
             value={nombre}
+            required
           />
           </Cell>
           <Cell width={1}>
@@ -154,11 +155,12 @@ const Form = ({ id }) => {
           placeholder="identidad"
           onChange={handleChange}
           value={identidad}
+          required
           />
           </Cell>
         </Grid>
          
-        <CustomButton type="submit">Agregar</CustomButton>
+        <CustomButton type="submit">{id ? 'Modificar':'Agregar'}</CustomButton>
       </form>
     </div>
   );

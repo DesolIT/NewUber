@@ -15,10 +15,30 @@ const Card = styled.div`
   margin: 10px;
   border-radius: 10px;
 `;
+const CustomInput = styled.input((props) => {
+  return {
+    borderWidth: "1px",
+    borderStyle: "solid",
+    borderColor: "#ced4da",
+    borderRadius: ".3rem",
+    outline: "none",
+    boxShadow: "none",
+    fontSize: "1rem",
+    fontFamily: "Arial",
+    marginTop: "2px",
+    position: "relative",
+    marginBottom: "0px",
+    boxSizing: "border-box",
+    padding: ".5rem 1rem",
+    fontSize: "1.1rem",
+    lineHeight: "1.5",
+    borderRadius: ".3rem",
+    width: "50%",
+  };
+});
 
 const CardSolicitud = ()=>{
-  
-  // const {v4:uuidv4} = require ('uuid')
+ 
 const [listSolicit, setListSolicit] = useState([]);
 useEffect(()=>{
     if (typeof localStorage != 'undefined') {
@@ -34,7 +54,7 @@ return(
             return(
                 <Cell width={1} key={listS.ident}>
                     <Card>
-                    {/* <img src="/Sin título-1 copia.jpg" width="100" alt="pepe" /> */}
+                    
                 <div className="card-content">
                   <span>Nombre : {listS.nombre}</span>
                   <br></br>
@@ -46,7 +66,6 @@ return(
                   <br></br>
                   <span>Peso Pack: {listS.pesoPaq}</span>
                   <br></br>
-                  {/* <span>ID: {listS.ident=uuidv4()}</span> */}
                   <span>ID: {listS.ident}</span>
                 </div>
                 
@@ -54,18 +73,9 @@ return(
                   type="button"
                   value="Modificar"
                   onClick={() =>
-                    router.push(`/motorista/solicitud/crear/${listS.ident}`)
+                    router.push(`/solicitud/editar/${listS.ident}`)
                   }
                 />
-                {/* <input
-                  type="button"
-                  value="Eliminar"
-                  onClick={() =>
-                    // router.push(`/motorista/solicitud/crear/${listS.ident}`)
-                    alert('Esta seguro que desea eliminar la solicitud ?')
-                  }
-                /> */}
-              
                     </Card>
                 </Cell>
             )
@@ -77,3 +87,5 @@ return(
 }
 
 export default CardSolicitud
+              
+              

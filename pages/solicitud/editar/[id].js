@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import Solicitud from "../../../../components/solicitud";
-
-const Crear = (props) => {
+import Solicitud from "../../../components/solicitud"
+import Layout from "../../../components/Layout";
+const Editar = (props) => {
     const router = useRouter();
     const [id, setId] = useState(null);
   
@@ -12,11 +12,12 @@ const Crear = (props) => {
   
     return (
       <div>
-        <Solicitud id={id} />
-        
+        <Layout>
+          <Solicitud id={id} />
+        </Layout>
       </div>
+        
     );
   };
   
-  export default Crear;
-  
+  export default Editar;

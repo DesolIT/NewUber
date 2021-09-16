@@ -1,6 +1,6 @@
 import React from "react";
-import CardSolicitud from "../../../../components/cardSolicitud";
-import Layout from "../../../../components/Layout";
+import CardSolicitud from "../../../components/cardSolicitud";
+import Layout from "../../../components/Layout";
 
 
 const ListarSol = () => {

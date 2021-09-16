@@ -63,6 +63,29 @@ const CustomButton = styled.button((props) => {
   };
 });
 
+const Select = styled.select((props)=>{
+  return {
+    borderWidth: "1px",
+    borderStyle: "solid",
+    borderColor: "#ced4da",
+    borderRadius: ".3rem",
+    outline: "none",
+    boxShadow: "none",
+    fontSize: "1rem",
+    fontFamily: "Arial",
+    marginTop: "2px",
+    position: "relative",
+    marginBottom: "0px",
+    boxSizing: "border-box",
+    padding: ".5rem 1rem",
+    fontSize: "1.1rem",
+    lineHeight: "1.5",
+    borderRadius: ".3rem",
+    width: "100%",
+    // background:'white'
+  };
+})
+
 const Solicitud = ({ id }) => {
   const {v4:uuidv4} = require ('uuid')
   const router = useRouter();
@@ -101,6 +124,7 @@ const Solicitud = ({ id }) => {
     let result = [...datos];
 
     if (id) {
+      
       result = datos.map((el) => {
        if (el.ident === id) {
          formSol.ident=uuidv4()
@@ -116,7 +140,7 @@ const Solicitud = ({ id }) => {
 
     localStorage.setItem("Solicitudes", JSON.stringify(result));
     sacarStorage = JSON.parse(localStorage.getItem("Solicitudes"));
-    router.push("/motorista/solicitud/listarSol/listarSol");
+    router.push("/solicitud/listar/listar");
   };
 
   const handleChange = (e) => {
@@ -148,14 +172,16 @@ const Solicitud = ({ id }) => {
               placeholder="Nombre Completo"
               onChange={handleChange}
               value={nombre}
+              required
             />
           </Cell>
           <Cell width={1}>
-            <select name="motorista" value={motorista} onChange={handleChange}>
+            <Select name="motorista" value={motorista} onChange={handleChange} required>
+              <option value='' hidden></option>
               {listNames.length > 0 ? (
                 listNames.map((opt) => {
                   return (
-                    <option key={opt.identidad} value={opt.identidad}>
+                    <option key={opt.identidad} value={opt.identidad} required>
                       {opt.nombre}
                     </option>
                   );
@@ -163,7 +189,7 @@ const Solicitud = ({ id }) => {
               ) : (
                 <p>Nada que mostrar</p>
               )}
-            </select>
+            </Select>
           </Cell>
           <Cell width={1}>
             <CustomInput
@@ -172,6 +198,7 @@ const Solicitud = ({ id }) => {
               placeholder="Direccion de Recogida"
               onChange={handleChange}
               value={dirR}
+              required
             />
           </Cell>
           <Cell width={1}>
@@ -181,6 +208,7 @@ const Solicitud = ({ id }) => {
               placeholder="Direccion de Destino"
               onChange={handleChange}
               value={dirD}
+              required
             />
           </Cell>
           <Cell width={1}>
@@ -194,12 +222,7 @@ const Solicitud = ({ id }) => {
           </Cell>
         </Grid>
 
-        <br />
-
-        <br />
-
-        <br />
-        <CustomButton type="submit">Agregar</CustomButton>
+        <CustomButton type="submit">{id ? 'Modificar':'Agregar'}</CustomButton>
       </form>
     </>
   );

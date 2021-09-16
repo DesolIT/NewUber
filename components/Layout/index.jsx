@@ -20,6 +20,44 @@ const HeaderCell = styled(Cell)`
   box-sizing: border-box;
 `;
 
+const CustomButton = styled.button((props) => {
+  return {
+    background: "linear-gradient(to top, #3949ab 50%, #1228af 50%) bottom",
+    backgroundSize: "200% 200%",
+    borderRadius: "4px",
+    color: "white",
+    border: "1px solid #3949ab",
+    textTransform: "uppercase !important",
+    boxShadow:
+      "0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%)",
+    ":hover": {
+      backgroundPosition: "top",
+      boxShadow:
+        "0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)",
+      border: "1px solid #1228af",
+    },
+    ":focus": {
+      boxShadow: "0px 0px 0px 1px white, 0px 0px 0px 3px #3949ab",
+    },
+    ":disabled": {
+      opacity: "0.6",
+    },
+    padding: "0px 10px 0px 10px",
+    fontSize: "1.25rem",
+    fontWeight: "250",
+    lineHeight: "3.25rem",
+    borderRadius: ".3rem",
+    letterSpacing: ".0892857143em",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    cursor: "pointer",
+    margin: "0",
+    opacity: "1",
+    transition: ".2s ease-out",
+  };
+});
+
 const Layout = ({ children }) => {
   const router = useRouter();
   return (
@@ -30,9 +68,9 @@ const Layout = ({ children }) => {
             <a>Header</a>
           </Link>
         </h1>
-        <button onClick={() => router.push("/motorista/create")}>Agregar Motorista</button>
-        <button onClick={() => router.push("/motorista/createSolic")}>Crear Solicitud</button>
-        <button onClick={() => router.push("/motorista/solicitud/listarSol/listarSol")}>ListarSolicitudes</button>
+        <CustomButton onClick={() => router.push("/motorista/create")}>Agregar Motorista</CustomButton>
+        <CustomButton onClick={() => router.push("/solicitud/create")}>Crear Solicitud</CustomButton>
+        <CustomButton onClick={() => router.push("/solicitud/listar/listar")}>Listar Solicitudes</CustomButton>
       </HeaderCell>
 
       <Cell>{children}</Cell>
